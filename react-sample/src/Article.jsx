@@ -19,6 +19,13 @@ const Article = (props) => {
       <h2>{props.title}</h2>
       <p>順番：{props.order}です</p>
       <p>著者：{props.author}です</p>
+      <label htmlFor="check">公開状態：</label>
+      <input
+        id="check"
+        type="checkbox"
+        checked={props.isPublished}
+        onClick={() => props.toggle()}
+      ></input>
       <p>{publishState}</p>
     </div>
   );
