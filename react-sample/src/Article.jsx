@@ -23,7 +23,11 @@ const Article = (props) => {
       <input
         id="check"
         type="checkbox"
-        checked={props.isPublished}
+        // checkedの場合、ブラウザ上でエラーが発生。↓エラー文
+        // You provided a `checked` prop to a form field without an `onChange` handler.
+        // This will render a read-only field. If the field should be mutable use `defaultChecked`.
+        // Otherwise, set either `onChange` or `readOnly`.
+        defaultChecked={props.isPublished}
         onClick={() => props.toggle()}
       ></input>
       <p>{publishState}</p>

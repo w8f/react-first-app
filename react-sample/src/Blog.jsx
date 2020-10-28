@@ -1,5 +1,6 @@
 import React from "react";
 import Article from "./Article";
+import FizzBuzz from "./FizzBuzz";
 
 // class component
 class Blog extends React.Component {
@@ -54,6 +55,7 @@ class Blog extends React.Component {
           author={authorName}
           toggle={() => this.togglePublished()}
         />
+        <FizzBuzz />
       </>
 
       // <React.Fragment>
