@@ -21,8 +21,34 @@ class Blog extends React.Component {
      */
     this.state = {
       isPublished: false,
+      count: 0,
     };
   }
+
+  /**
+   * Reactのライフサイクル
+   * ↓mounting コンポーネントが配置される（生まれる）期間
+   * ↓updating コンポーネントが返納される（成長する）期間
+   * ↓unmounting コンポーネントが破壊される（死ぬ）期間
+   *
+   * ※なぜライフサイクルを使う？
+   * ・関数の外に影響を与える関数を記述するため。
+   * ※DOM変更、API通信、ログ出力、setState()...etc
+   * ・副作用＝適切な場所に配置すべき処理
+   *
+   * 主要メソッド（Mount）
+   * 最初から使いたいものとか。。定義仕様。
+   * ・constructor() 初期化（stateなど）
+   * ・render() VDOMを描画（JSXをリターン）
+   * ・componentDidMount() render()あとに一度だけ呼ばれる リスナーの設定やAPI通信に使われる。
+   *
+   * 主要メソッド（Update）
+   * ・render() VDOMを再描画
+   * ・componentDidUpdate 再render()後に呼ばれる スクロールイベントや条件付きイベント。
+   *
+   * 主要メソッド（Unmount）
+   * ・componentWillUnmount() コンポーネントが破棄される直前 リソースを開放するため。リスナーの解除など。
+   */
 
   /**
    * ★stateの変更方法
@@ -37,6 +63,29 @@ class Blog extends React.Component {
       isPublished: !this.state.isPublished,
     });
   };
+
+  countUp = () => {
+    // this.setState({ state: { count: this.state.count + 1 } });
+    this.setState({ count: this.state.count + 1 });
+  };
+
+  //mount時に使えるメソッド
+  componentDidMount() {
+    // クリックでいいね数up!!
+    document.getElementById("counter").addEventListener("click", this.countUp);
+  }
+
+  componentDidUpdate() {
+    if (this.state.count >= 10) {
+      this.setState({ count: 0 });
+    }
+  }
+
+  componentWillUnmount() {
+    document
+      .getElementById("counter")
+      .removeEventListener("click", this.countUp);
+  }
 
   render() {
     const authorName = "hayakawa";
@@ -54,6 +103,7 @@ class Blog extends React.Component {
           isPublished={this.state.isPublished}
           author={authorName}
           toggle={() => this.togglePublished()}
+          count={this.state.count}
         />
         <FizzBuzz />
       </>

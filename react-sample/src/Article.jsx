@@ -1,4 +1,5 @@
 import React from "react";
+import LikeButton from "./LikeButton";
 
 // Functional Compornent
 // stateを持たない。
@@ -31,6 +32,7 @@ const Article = (props) => {
         onClick={() => props.toggle()}
       ></input>
       <p>{publishState}</p>
+      <LikeButton count={props.count} />
     </div>
   );
 };
