@@ -1,6 +1,7 @@
 import React from "react";
 import Article from "./Article";
 import FizzBuzz from "./FizzBuzz";
+import Curry from "./Curry";
 
 // class component
 class Blog extends React.Component {
@@ -106,6 +107,7 @@ class Blog extends React.Component {
           count={this.state.count}
         />
         <FizzBuzz />
+        <Curry />
       </>
 
       // <React.Fragment>
