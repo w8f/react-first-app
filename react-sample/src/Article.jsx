@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import LikeButton from "./LikeButton";
 
 // Functional Compornent
 // stateを持たない。
 // こっちの書き方の方が推奨されている（らしい）
 const Article = (props) => {
+  const [isPublished, togglePublished] = useState(false);
   let publishState = "";
   if (props.isPublished) {
     publishState = "公開";
@@ -28,11 +29,11 @@ const Article = (props) => {
         // You provided a `checked` prop to a form field without an `onChange` handler.
         // This will render a read-only field. If the field should be mutable use `defaultChecked`.
         // Otherwise, set either `onChange` or `readOnly`.
-        defaultChecked={props.isPublished}
-        onClick={() => props.toggle()}
+        defaultChecked={isPublished}
+        onClick={() => togglePublished(!isPublished)}
       ></input>
       <p>{publishState}</p>
-      <LikeButton count={props.count} />
+      <LikeButton />
     </div>
   );
 };

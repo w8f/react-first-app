@@ -7,28 +7,26 @@ import { Foo, Bar } from "./components/FooBar";
 // 名前無し
 import Hoge from "./components/Hoge";
 // class component
-class Blog extends React.Component {
-  constructor(props) {
-    super(props);
-    /**
-     * stateとは
-     * 1,コンポーネント内で管理する変数
-     * 2,ローカルステートと呼ばれる。
-     * 3,propsとして子コンポーネントに渡せる。
-     */
-
-    /**
-     * ★Stateの設定方法
-     * constructor()内で宣言
-     * オブジェクト型で記述
-     * Stateの中身が変わると、再度レンダリングされる。
-     */
-    this.state = {
-      isPublished: false,
-      count: 0,
-    };
-  }
-
+const Blog = () => {
+  // constructor(props) {
+  //   super(props);
+  //   /**
+  //    * stateとは
+  //    * 1,コンポーネント内で管理する変数
+  //    * 2,ローカルステートと呼ばれる。
+  //    * 3,propsとして子コンポーネントに渡せる。
+  //    */
+  //   /**
+  //    * ★Stateの設定方法
+  //    * constructor()内で宣言
+  //    * オブジェクト型で記述
+  //    * Stateの中身が変わると、再度レンダリングされる。
+  //    */
+  //   this.state = {
+  //     isPublished: false,
+  //     count: 0,
+  //   };
+  // }
   /**
    * Reactのライフサイクル
    * ↓mounting コンポーネントが配置される（生まれる）期間
@@ -53,74 +51,71 @@ class Blog extends React.Component {
    * 主要メソッド（Unmount）
    * ・componentWillUnmount() コンポーネントが破棄される直前 リソースを開放するため。リスナーの解除など。
    */
-
   /**
    * ★stateの変更方法
    * setState()を使う
    * 関数にラップするのが一般的
    * setState()内に記述されたstateのみを変更。
    */
-
-  // 公開状態を反転させる関数
-  togglePublished = () => {
-    this.setState({
-      isPublished: !this.state.isPublished,
-    });
-  };
-
-  countUp = () => {
-    // this.setState({ state: { count: this.state.count + 1 } });
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  //mount時に使えるメソッド
-  componentDidMount() {
-    // クリックでいいね数up!!
-    document.getElementById("counter").addEventListener("click", this.countUp);
-  }
-
-  componentDidUpdate() {
-    if (this.state.count >= 10) {
-      this.setState({ count: 0 });
-    }
-  }
-
-  componentWillUnmount() {
-    document
-      .getElementById("counter")
-      .removeEventListener("click", this.countUp);
-  }
-
-  render() {
-    const authorName = "hayakawa";
-    return (
-      // <>は<React.Fragment>の省略形
-      <>
-        <Article
-          title={"Reactの使い方"}
-          order={3}
-          /**
-           * ★Stateの取得
-           * 同コンポーネント内なら,this.state.key名で取得
-           * 子コンポーネントで参照したい場合は、propsで渡す。
-           */
-          isPublished={this.state.isPublished}
-          author={authorName}
-          toggle={() => this.togglePublished()}
-          count={this.state.count}
-        />
-        <FizzBuzz />
-        <Curry />
-        <Foo />
-        <Bar />
-        <Hoge />
-      </>
-
-      // <React.Fragment>
-      //   <Article />
-      // </React.Fragment>
-    );
-  }
-}
+  // // 公開状態を反転させる関数
+  // togglePublished = () => {
+  //   this.setState({
+  //     isPublished: !this.state.isPublished,
+  //   });
+  // };
+  // countUp = () => {
+  //   // this.setState({ state: { count: this.state.count + 1 } });
+  //   this.setState({ count: this.state.count + 1 });
+  // };
+  // //mount時に使えるメソッド
+  // componentDidMount() {
+  //   // クリックでいいね数up!!
+  //   document.getElementById("counter").addEventListener("click", this.countUp);
+  // }
+  // componentDidUpdate() {
+  //   if (this.state.count >= 10) {
+  //     this.setState({ count: 0 });
+  //   }
+  // }
+  // componentWillUnmount() {
+  //   document
+  //     .getElementById("counter")
+  //     .removeEventListener("click", this.countUp);
+  // }
+  // render() {
+  //   const authorName = "hayakawa";
+  //   return (
+  //     // <>は<React.Fragment>の省略形
+  //     <>
+  //       <Article
+  //         title={"Reactの使い方"}
+  //         order={3}
+  //         /**
+  //          * ★Stateの取得
+  //          * 同コンポーネント内なら,this.state.key名で取得
+  //          * 子コンポーネントで参照したい場合は、propsで渡す。
+  //          */
+  //         isPublished={this.state.isPublished}
+  //         author={authorName}
+  //         toggle={() => this.togglePublished()}
+  //         count={this.state.count}
+  //       />
+  //       <FizzBuzz />
+  //       <Curry />
+  //       <Foo />
+  //       <Bar />
+  //       <Hoge />
+  //     </>
+  //     // <React.Fragment>
+  //     //   <Article />
+  //     // </React.Fragment>
+  //   );
+  // }
+  return (
+    <>
+      <Article title={"Reactの使い方"} />
+    </>
+  );
+};
 
 export default Blog;
