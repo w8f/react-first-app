@@ -2,7 +2,10 @@ import React from "react";
 import Article from "./Article";
 import FizzBuzz from "./FizzBuzz";
 import Curry from "./Curry";
-
+// 名前付きimport
+import { Foo, Bar } from "./components/FooBar";
+// 名前無し
+import Hoge from "./components/Hoge";
 // class component
 class Blog extends React.Component {
   constructor(props) {
@@ -108,6 +111,9 @@ class Blog extends React.Component {
         />
         <FizzBuzz />
         <Curry />
+        <Foo />
+        <Bar />
+        <Hoge />
       </>
 
       // <React.Fragment>
